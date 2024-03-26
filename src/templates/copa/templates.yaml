@@ -1,0 +1,17 @@
+dataset: super_glue
+subset: copa
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: copa-prompt-t5
+      choices: ['choice1', 'choice2']
+      input: 'premise: {{premise}} choice1: {{choice1}} choice2: {{choice2}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy

@@ -1,0 +1,16 @@
+dataset: gem
+subset: wiki_auto_asset
+splits:
+  train: train
+  validation: validation
+  test: test_asset
+templates:
+  - T5:
+    - name: wiki_auto-prompt-t5
+      input: '{{source}}'
+      target: '{{target}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - bleu

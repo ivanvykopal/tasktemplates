@@ -1,0 +1,15 @@
+dataset: multi_news
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: multi_news-prompt-t5
+      input: 'summarize: {{document}}'
+      target: '{{summary}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

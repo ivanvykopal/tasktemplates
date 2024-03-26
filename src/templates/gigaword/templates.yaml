@@ -1,0 +1,16 @@
+dataset: gigaword
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: gigaword-prompt-t5
+      input: 'summarize: {{document}}'
+      target: '{{summary}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge
+

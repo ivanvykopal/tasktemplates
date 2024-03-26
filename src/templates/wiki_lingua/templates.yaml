@@ -1,0 +1,16 @@
+dataset: gem
+subset: wiki_lingua_english_en
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: wiki_lingua-prompt-t5
+      input: '{{source_aligned['en']}}'
+      target: '{{target_aligned['en']}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

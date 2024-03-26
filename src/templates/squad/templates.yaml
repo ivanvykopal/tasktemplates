@@ -1,0 +1,27 @@
+dataset: squad
+splits:
+  train: train
+  validation: validation
+  test: validation
+templates:
+  - T5:
+    - name: squad-prompt-t5
+      input: 'question: {{question}} context: {{context}}'
+      target: '{{answers['text'][0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation
+    - name: squad-prompt-trivia-t5
+      input: 'squad trivia question: {{question}}'
+      target: '{{answers['text'][0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation

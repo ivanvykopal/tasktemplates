@@ -1,0 +1,17 @@
+dataset: nq_open
+splits:
+  train: train
+  validation: validation
+  test: validation
+templates:
+  - T5:
+    - name: nq_open-prompt-t5
+      input: 'nq question: {{question}}'
+      target: '{{answer[0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation

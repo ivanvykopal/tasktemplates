@@ -1,0 +1,18 @@
+dataset: super_glue
+subset: record
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: record-prompt-t5
+      input: 'record query: {{query}} entities: {{entities}} passage: {{passage}}'
+      target: '{{answer}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - record_preprocess

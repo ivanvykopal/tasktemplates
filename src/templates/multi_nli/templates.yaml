@@ -1,0 +1,15 @@
+dataset: nyu-mll/multi_nli
+splits:
+  train: train
+  validation: validation_mismatched
+  test: validation_mismatched
+templates:
+  - T5:
+    - name: multi_nli-prompt-t5
+      input: 'premise: {{premise}} hypothesis: {{hypothesis}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy

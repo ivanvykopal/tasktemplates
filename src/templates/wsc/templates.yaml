@@ -1,0 +1,18 @@
+dataset: super_glue
+subset: wsc
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: wsc-prompt-t5
+      input: 'wsc text: {{text}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+        preprocessing:
+          - wsc_preprocess

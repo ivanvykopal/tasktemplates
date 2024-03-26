@@ -1,0 +1,17 @@
+dataset: nyu-mll/glue
+subset: mnli
+splits:
+  train: train
+  validation: validation_mismatched
+  test: test_mismatched
+templates:
+  - T5:
+    - name: mnli-prompt-t5
+      choices: ['entailment', 'neutral', 'contradiction']
+      input: 'premise: {{premise}} hypothesis: {{hypothesis}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy

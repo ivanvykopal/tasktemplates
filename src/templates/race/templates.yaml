@@ -1,0 +1,18 @@
+dataset: ehovy/race
+subset: middle
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: race-prompt-t5
+      choices: ['0', '1', '2', '3']
+      input: 'question: {{question}} context: {{article}} choice0: {{options[0]}} choice1: {{options[1]}} choice2: {{options[2]}} choice3: {{options[3]}}'
+      target: '{{lambda answer: str(ord(answer) - ord('A'))}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+

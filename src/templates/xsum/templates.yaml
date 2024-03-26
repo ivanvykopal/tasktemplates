@@ -1,0 +1,16 @@
+dataset: gem
+subset: xsum
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: xsum-prompt-t5
+      input: 'summarize: {{document}}'
+      target: '{{target}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

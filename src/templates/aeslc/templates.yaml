@@ -1,0 +1,15 @@
+dataset: aeslc
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: aeslc-prompt-t5
+      input: 'summarize: {{email_body}}'
+      target: '{{subject_line}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

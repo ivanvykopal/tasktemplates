@@ -1,0 +1,17 @@
+dataset: gem
+subset: common_gen
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: common_gen-prompt-t5
+      input_template: 'generate: {{lambda concepts: " ".join(concepts)}}'
+      output_template: '{{target}}'
+      task: text-classification
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

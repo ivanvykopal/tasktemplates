@@ -1,0 +1,16 @@
+dataset: cnn_dailymail
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: cnn_dailymail-prompt-t5
+      input_template: 'summarize: {{article}}'
+      output_template: '{{highlights}}'
+      task: summarization
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

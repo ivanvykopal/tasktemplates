@@ -1,0 +1,16 @@
+dataset: c4
+subset: en
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: c4-prompt-t5
+      input: ''
+      target: '{{text}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

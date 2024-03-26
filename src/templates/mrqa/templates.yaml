@@ -1,0 +1,17 @@
+dataset: mrqa
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: mrqa-prompt-t5
+      input: 'question: {{question}} context: {{context}}'
+      target: '{{answers[0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation

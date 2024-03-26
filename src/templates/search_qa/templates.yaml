@@ -1,0 +1,18 @@
+dataset: search_qa
+subset: train_test_val
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: search_qa-prompt-t5
+      input: 'question: {{question}}'
+      target: '{{answer}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation

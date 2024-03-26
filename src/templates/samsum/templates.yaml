@@ -1,0 +1,15 @@
+dataset: samsum
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: samsum-prompt-t5
+      input: 'summarize: {{dialogue}}'
+      target: '{{summary}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

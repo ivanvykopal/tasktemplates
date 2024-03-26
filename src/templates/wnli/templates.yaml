@@ -1,0 +1,16 @@
+dataset: nyu-mll/glue
+subset: wnli
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: wnli-prompt-t5
+      input: 'sentence1: {{sentence1}} sentence2: {{sentence2}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy

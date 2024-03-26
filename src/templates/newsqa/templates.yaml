@@ -1,0 +1,28 @@
+dataset: legacy107/newsqa
+splits:
+  train: train
+  validation: validation
+  test: validation
+templates:
+  - T5:
+    - name: newsqa-prompt-t5
+      input: 'question: {{question}} context: {{context}}'
+      target: '{{answer[0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge
+        preprocessing:
+          - pad_punctuation
+    - name: newsqa-prompt-t5-without-context
+      input: 'question: {{question}}'
+      target: '{{answer[0]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge
+        preprocessing:
+          - pad_punctuation
+

@@ -1,0 +1,15 @@
+dataset: newsroom
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: newsroom-prompt-t5
+      input: 'summarize: {{text}}'
+      target: '{{summary}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - rouge

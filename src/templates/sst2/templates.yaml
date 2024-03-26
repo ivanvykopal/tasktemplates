@@ -1,0 +1,19 @@
+dataset: nyu-mll/glue
+subset: sst2
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  - T5:
+    - name: sst2-prompt-t5
+      choices: ['negative', 'positive']
+      input: 'sentence: {{sentence}}'
+      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+        preprocessing:
+          - pad_punctuation

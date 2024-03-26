@@ -1,0 +1,16 @@
+dataset: saattrupdan/doc-nli
+splits:
+  train: train
+  validation: val
+  test: test
+templates:
+  - T5:
+    - name: doc_nli-prompt-t5
+      choices: ['entailment', 'not_entailment']
+      input: 'premise: {{premise}} hypothesis: {{hypothesis}}'
+      target: '{{label}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
