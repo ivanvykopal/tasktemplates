@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: cxc-prompt-t5
       input: 'sentence1: {{sentence1}} sentence2: {{sentence2}}'
       target: '{{lambda score: np.round((score * 5) / 5, decimals=1)}}'

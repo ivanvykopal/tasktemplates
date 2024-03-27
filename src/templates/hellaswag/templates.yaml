@@ -4,7 +4,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: hellaswag-prompt-t5
       choices: ['0', '1', '2', '3']
       input: 'context: {{ctx}} ending0: {{endings[0]}} ending1: {{endings[1]}} ending2: {{endings[2]}} ending3: {{endings[3]}}'

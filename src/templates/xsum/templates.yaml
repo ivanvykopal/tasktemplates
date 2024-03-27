@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: xsum-prompt-t5
       input: 'summarize: {{document}}'
       target: '{{target}}'

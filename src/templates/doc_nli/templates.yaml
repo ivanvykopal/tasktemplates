@@ -4,7 +4,7 @@ splits:
   validation: val
   test: test
 templates:
-  - T5:
+  T5:
     - name: doc_nli-prompt-t5
       choices: ['entailment', 'not_entailment']
       input: 'premise: {{premise}} hypothesis: {{hypothesis}}'

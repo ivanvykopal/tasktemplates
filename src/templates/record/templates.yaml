@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: record-prompt-t5
       input: 'record query: {{query}} entities: {{entities}} passage: {{passage}}'
       target: '{{answer}}'

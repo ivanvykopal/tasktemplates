@@ -5,10 +5,10 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: wiki_lingua-prompt-t5
-      input: '{{source_aligned['en']}}'
-      target: '{{target_aligned['en']}}'
+      input: '{{source_aligned["en"]}}'
+      target: '{{target_aligned["en"]}}'
       metadata:
         languages:
           - en

@@ -5,9 +5,9 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: hotpot_qa-prompt-t5
-      input: 'lambda question, context: question: {{question}} context: {{context['sentences'][0]}}'
+      input: 'question: {{question}} context: {{"".join(context["sentences"][0])}}'
       target: '{{answer}}'
       metadata:
         languages:

@@ -4,10 +4,10 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: cnn_dailymail-prompt-t5
-      input_template: 'summarize: {{article}}'
-      output_template: '{{highlights}}'
+      input: 'summarize: {{article}}'
+      target: '{{highlights}}'
       task: summarization
       metadata:
         languages:

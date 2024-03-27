@@ -4,7 +4,7 @@ splits:
   validation: test
   test: ca_test
 templates:
-  - T5:
+  T5:
     - name: billsum-prompt-t5
       input: 'summarize: {{text}}'
       target: '{{summary}}'

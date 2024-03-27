@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test_asset
 templates:
-  - T5:
+  T5:
     - name: wiki_auto-prompt-t5
       input: '{{source}}'
       target: '{{target}}'

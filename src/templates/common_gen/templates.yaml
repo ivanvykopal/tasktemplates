@@ -5,10 +5,10 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: common_gen-prompt-t5
-      input_template: 'generate: {{lambda concepts: " ".join(concepts)}}'
-      output_template: '{{target}}'
+      input: 'generate: {{lambda concepts: " ".join(concepts)}}'
+      target: '{{target}}'
       task: text-classification
       metadata:
         languages:

@@ -5,11 +5,11 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: qnli-prompt-t5
       choices: ['entailment', 'not_entailment']
       input: 'question: {{question}} sentence: {{sentence}}'
-      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:
         languages:
           - en

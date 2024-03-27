@@ -4,7 +4,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: samsum-prompt-t5
       input: 'summarize: {{dialogue}}'
       target: '{{summary}}'

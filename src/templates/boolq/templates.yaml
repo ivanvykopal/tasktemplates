@@ -5,11 +5,11 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: boolq-prompt-t5
       choices: ['False', 'True']
       input: 'question: {{question}} passage: {{passage}}'
-      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:
         languages:
           - en

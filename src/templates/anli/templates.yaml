@@ -4,11 +4,11 @@ splits:
   validation: dev_r1
   test: test_r1
 templates:
-  - T5:
+  T5:
     - name: anli-prompt-t5
-      choices: ['entailment', 'neutral', 'contradiction']
+      choices: [entailment, neutral, contradiction]
       input: 'premise: {{premise}} hypothesis: {{hypothesis}}'
-      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:
         languages:
           - en

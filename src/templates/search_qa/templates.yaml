@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: search_qa-prompt-t5
       input: 'question: {{question}}'
       target: '{{answer}}'

@@ -5,7 +5,7 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: stsb-prompt-t5
       input: 'stsb sentence1: {{sentence1}} sentence2: {{sentence2}}'
       target: '{{lambda label: np.round((label * 5) / 5, decimals=1)}}'

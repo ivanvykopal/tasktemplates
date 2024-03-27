@@ -4,10 +4,10 @@ splits:
   validation: validation
   test: validation
 templates:
-  - T5:
+  T5:
     - name: drop-prompt-t5
       input: 'question: {{question}} context: {{passage}}'
-      target: '{{answers_spans['spans'][0]}}'
+      target: '{{answers_spans["spans"][0]}}'
       metadata:
         languages:
           - en

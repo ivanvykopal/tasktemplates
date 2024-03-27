@@ -1,7 +1,7 @@
 dataset: winogrande
 subset: winogrande_xl
 templates:
-  - T5:
+  T5:
     - name: winogrande-prompt-t5
       input: 'sentence: {{sentence}} option0: {{option0}} option1: {{option1}}'
       target: '{{lambda label: str(int(answer) - 1)}}'

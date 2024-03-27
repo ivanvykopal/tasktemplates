@@ -5,11 +5,11 @@ splits:
   validation: validation
   test: test
 templates:
-  - T5:
+  T5:
     - name: qqp-prompt-t5
       choices: ['not_duplicate', 'duplicate']
       input: 'question1: {{question1}} question2: {{question2}}'
-      target: '{{lambda label: '<unk>' if label == -1 else choices[label]}}'
+      target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:
         languages:
           - en

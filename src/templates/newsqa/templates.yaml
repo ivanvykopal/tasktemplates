@@ -4,7 +4,7 @@ splits:
   validation: validation
   test: validation
 templates:
-  - T5:
+  T5:
     - name: newsqa-prompt-t5
       input: 'question: {{question}} context: {{context}}'
       target: '{{answer[0]}}'
@@ -25,4 +25,3 @@ templates:
           - rouge
         preprocessing:
           - pad_punctuation
-
