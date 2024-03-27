@@ -73,7 +73,6 @@ class F1Invalid(Metric):  # Need to fix this
 
     @staticmethod
     def binary_reverse(targets):
-        print(targets)
         return ["0" if target == "1" else "1" for target in targets]
 
     def update(self, preds, targets):

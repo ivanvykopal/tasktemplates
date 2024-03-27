@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestSquad(unittest.TestCase):
@@ -12,13 +13,13 @@ class TestSquad(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} context: {EXAMPLE['context']}",
-        "target": f"{EXAMPLE['answers']['text'][0]}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])} context: {pad_punctuation(EXAMPLE['context'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answers']['text'][0])}"
     }
 
     EXPECTED_TRIVIA = {
-        "input": f"squad trivia question: {EXAMPLE['question']}",
-        "target": f"{EXAMPLE['answers']['text'][0]}"
+        "input": f"squad trivia question: {pad_punctuation(EXAMPLE['question'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answers']['text'][0])}"
     }
 
     def test_squad_t5(self):

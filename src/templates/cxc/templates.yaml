@@ -13,5 +13,5 @@ templates:
         languages:
           - en
         metrics:
-          - pearson_correcoef
-          - spearman_correcoef
+          - pearson_corrcoef
+          - spearman_corrcoef

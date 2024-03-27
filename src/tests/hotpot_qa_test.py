@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestHotpotQA(unittest.TestCase):
@@ -12,8 +13,8 @@ class TestHotpotQA(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} context: {''.join(EXAMPLE['context']['sentences'][0])}",
-        "target": f"{EXAMPLE['answer']}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])} context: {pad_punctuation(''.join(EXAMPLE['context']['sentences'][0]))}",
+        "target": f"{pad_punctuation(EXAMPLE['answer'])}"
     }
 
     def test_hotpot_qa_t5(self):

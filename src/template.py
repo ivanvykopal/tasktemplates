@@ -1,8 +1,12 @@
 import logging
 import os
 import yaml
+import re
 
 from utils import process_template
+from metrics import get_metrics
+from preprocessors.core import pad_punctuation, remove_markup
+from preprocessors.wsc_preprocessor import WSCPreprocessor
 
 logging.basicConfig(level=logging.INFO)
 
@@ -12,9 +16,10 @@ class Metadata:
     Metadata for the dataset
     """
 
-    def __init__(self, metadata_dict):
+    def __init__(self, metadata_dict, template_dict):
         self.languages = metadata_dict["languages"]
-        self.metrics = metadata_dict["metrics"]
+        self.metric_names = metadata_dict["metrics"]
+        self.metrics = get_metrics(template_dict)
         self.preprocessing = metadata_dict["preprocessing"] if 'preprocessing' in metadata_dict else None
 
 
@@ -27,19 +32,51 @@ class Template:
         self.name = name
         self.input = template_dict["input"]
         self.target = template_dict["target"]
-        self.metadata = Metadata(template_dict["metadata"])
-
         self.choices = template_dict["choices"] if "choices" in template_dict else None
         self.num_classes = len(self.choices) if self.choices else None
+        self.metadata = Metadata(
+            template_dict["metadata"], template_dict=template_dict)
+
+    def get_preprocessing_steps(self):
+        preprocessors = {
+            "pad_punctuation": pad_punctuation,
+            "remove_markup": remove_markup,
+        }
+
+        steps = []
+        if self.metadata.preprocessing:
+            for step in self.metadata.preprocessing:
+                if step in preprocessors:
+                    steps.append(preprocessors[step])
+        return steps
+
+    def apply_preprocessors(self, example):
+        preprocessors = {
+            "wsc_preprocess": WSCPreprocessor().preprocess,
+        }
+
+        for step in self.metadata.preprocessing:
+            if step in preprocessors:
+                example = preprocessors[step](example)
+
+        return example
 
     def apply(self, example):
         """
         Apply the template to the data
         """
-        input_prompt = process_template(self.input, example, self.choices)
+        if self.metadata.preprocessing:
+            example = self.apply_preprocessors(example)
 
-        target = process_template(self.target, example, self.choices)
+        input_prompt = process_template(
+            self.input, example, self.choices, self.get_preprocessing_steps())
+
+        target = process_template(
+            self.target, example, self.choices, self.get_preprocessing_steps())
         return {'input': input_prompt, 'target': target}
+
+    def get_metrics(self):
+        return self.metadata.metrics
 
 
 class PromptTemplate:

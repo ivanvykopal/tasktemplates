@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestMRQA(unittest.TestCase):
@@ -12,8 +13,8 @@ class TestMRQA(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} context: {EXAMPLE['context']}",
-        "target": f"{EXAMPLE['answers'][0]}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])} context: {pad_punctuation(EXAMPLE['context'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answers'][0])}"
     }
 
     def test_mrqa_t5(self):

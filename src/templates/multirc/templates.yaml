@@ -15,6 +15,6 @@ templates:
           - en
         metrics:
           - exact_match
-          - f1_all_answers
+          - multirc_f1
         preprocessing:
           - remove_markup

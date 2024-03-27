@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestSearchQA(unittest.TestCase):
@@ -11,8 +12,8 @@ class TestSearchQA(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']}",
-        "target": f"{EXAMPLE['answer']}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answer'])}"
     }
 
     def test_search_qa_t5(self):

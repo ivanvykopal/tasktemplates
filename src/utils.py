@@ -239,7 +239,13 @@ def match_function(text, example):
     return re.sub(match_string, replace, text)
 
 
-def process_template(text, example, choices):
+def apply_preprocess_steps(text, preprocess_steps):
+    for step in preprocess_steps:
+        text = step(text)
+    return text
+
+
+def process_template(text, example, choices, preproces_steps):
     match_string = r'\{\{([^{}]+)\}\}'
 
     def replace(match):
@@ -252,12 +258,14 @@ def process_template(text, example, choices):
             variable = re.match(index_match, match.group(1))
             expression = re.sub(variable.group(
                 1), f'example.get("{variable.group(1)}")', expression)
-            return eval(expression, {"example": example}, example)
+            result = eval(expression, {"example": example}, example)
+            return apply_preprocess_steps(str(result), preproces_steps)
         elif re.search(index_match, expression) and not re.search(r'lambda', expression):
             match = re.search(index_match, expression)
             expression = re.sub(match.group(
                 1), f'example.get("{match.group(1)}")', expression)
-            return eval(expression, {"example": example}, example)
+            results = eval(expression, {"example": example}, example)
+            return apply_preprocess_steps(str(results), preproces_steps)
         else:
             try:
                 # Check if the expression is a lambda function
@@ -280,11 +288,13 @@ def process_template(text, example, choices):
 
                     # Call the lambda function with the example dictionary
                     result = func(example)
-                    return str(result)
+                    return apply_preprocess_steps(
+                        str(result), preproces_steps)
                 else:
                     # Evaluate other expressions normally
                     result = eval(expression, {}, example)
-                    return str(result)
+                    return apply_preprocess_steps(
+                        str(result), preproces_steps)
             except Exception as e:
                 return str(e)  # If there's any error, return the error message
 

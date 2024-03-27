@@ -54,7 +54,6 @@ class Rouge(Metric):
         aggregator = scoring.BootstrapAggregator()
 
         for target, pred in zip(self.targets, self.preds):
-            print(target, pred)
             target = prepare_summary_rouge(target)
             pred = prepare_summary_rouge(pred)
             aggregator.add_scores(scorer.score(target=target, prediction=pred))

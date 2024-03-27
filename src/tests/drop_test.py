@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestDrop(unittest.TestCase):
@@ -12,8 +13,8 @@ class TestDrop(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} context: {EXAMPLE['passage']}",
-        "target": f"{EXAMPLE['answers_spans']['spans'][0]}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])} context: {pad_punctuation(EXAMPLE['passage'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answers_spans']['spans'][0])}"
     }
 
     def test_drop_t5(self):

@@ -1,6 +1,7 @@
 import unittest
 
 from template import PromptTemplate
+from preprocessors.core import pad_punctuation
 
 
 class TestNewsQA(unittest.TestCase):
@@ -12,8 +13,13 @@ class TestNewsQA(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} context: {EXAMPLE['context']}",
-        "target": f"{EXAMPLE['answer'][0]}"
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])} context: {pad_punctuation(EXAMPLE['context'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answer'][0])}"
+    }
+
+    EXPECTED_WITHOUT_CONTEX = {
+        "input": f"question: {pad_punctuation(EXAMPLE['question'])}",
+        "target": f"{pad_punctuation(EXAMPLE['answer'][0])}"
     }
 
     def test_newsqa_t5(self):
@@ -23,6 +29,14 @@ class TestNewsQA(unittest.TestCase):
 
         output = prompt_template.apply(self.EXAMPLE)
         self.assertEqual(output, self.EXPECTED)
+
+    def test_newsqa_t5_2(self):
+        template = PromptTemplate("newsqa")
+        prompt_template = template.get_template(
+            "T5", "newsqa-prompt-t5-without-context")
+
+        output = prompt_template.apply(self.EXAMPLE)
+        self.assertEqual(output, self.EXPECTED_WITHOUT_CONTEX)
 
 
 # run test

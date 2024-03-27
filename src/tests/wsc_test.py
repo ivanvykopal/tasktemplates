@@ -4,21 +4,25 @@ import numpy as np
 from template import PromptTemplate
 
 
-class TestXSUM(unittest.TestCase):
+class TestWSC(unittest.TestCase):
 
     EXAMPLE = {
-        "document": "Mark told Pete many lies about himself, which Pete included in his book. He should have been more skeptical.",
-        "target": "This is a summary of the document."
+        'text': 'This is a test sentence .',
+        'span1_text': 'test',
+        'span1_index': 3,
+        'span2_text': 'This',
+        'span2_index': 0,
+        'label': 0
     }
     EXPECTED = {
-        "input": f"summarize: {EXAMPLE['document']}",
-        "target": f"{EXAMPLE['target']}"
+        "input": f"wsc text: # This # is a * test * sentence .",
+        "target": f"False"
     }
 
-    def test_xsum_t5(self):
-        template = PromptTemplate("xsum")
+    def test_wsc_t5(self):
+        template = PromptTemplate("wsc")
         prompt_template = template.get_template(
-            "T5", "xsum-prompt-t5")
+            "T5", "wsc-prompt-t5")
 
         output = prompt_template.apply(self.EXAMPLE)
         self.assertEqual(output, self.EXPECTED)
