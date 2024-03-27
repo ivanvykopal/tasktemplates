@@ -7,6 +7,7 @@ splits:
 templates:
   T5:
     - name: wnli-prompt-t5
+      choices: ['not_entailment', 'entailment']
       input: 'sentence1: {{sentence1}} sentence2: {{sentence2}}'
       target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:

@@ -1,10 +1,14 @@
 dataset: winogrande
 subset: winogrande_xl
+splits:
+  train: train
+  validation: validation
+  test: test
 templates:
   T5:
     - name: winogrande-prompt-t5
-      input: 'sentence: {{sentence}} option0: {{option0}} option1: {{option1}}'
-      target: '{{lambda label: str(int(answer) - 1)}}'
+      input: 'sentence: {{sentence}} option0: {{option1}} option1: {{option2}}'
+      target: '{{lambda answer: str(int(answer) - 1)}}'
       metadata:
         languages:
           - en

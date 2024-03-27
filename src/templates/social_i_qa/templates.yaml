@@ -8,7 +8,7 @@ templates:
     - name: social_i_qa-prompt-t5
       choices: ['0', '1', '2']
       input: 'question: {{question}} context: {{context}} || choice0: {{answerA}} || choice1: {{answerB}} || choice2: {{answerC}}'
-      target: '{{lambda answer: str(int(label) - 1)}}'
+      target: '{{lambda label: str(int(label) - 1)}}'
       metadata:
         languages:
           - en

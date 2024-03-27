@@ -1,4 +1,4 @@
-dataset: c4
+dataset: allenai/c4
 subset: en
 splits:
   train: train

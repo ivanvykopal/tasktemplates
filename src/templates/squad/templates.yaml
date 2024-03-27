@@ -1,4 +1,4 @@
-dataset: squad
+dataset: rajpurkar/squad
 splits:
   train: train
   validation: validation

@@ -6,7 +6,7 @@ splits:
 templates:
   T5:
     - name: cosmos_qa-prompt-t5
-      input: 'question: {{question}} context: {{context}} choice0: {{answer0}} choice1: {{answer1}} choice2: {{answer2}} choice3: {{answer3[0]}}'
+      input: 'question: {{question}} context: {{context}} choice0: {{answer0}} choice1: {{answer1}} choice2: {{answer2}} choice3: {{answer3}}'
       target: '{{lambda label: str(label)}}'
       metadata:
         languages:

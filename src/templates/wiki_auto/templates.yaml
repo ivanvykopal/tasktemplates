@@ -1,5 +1,5 @@
 dataset: gem
-subset: wiki_auto_asset
+subset: wiki_auto_asset_turk
 splits:
   train: train
   validation: validation

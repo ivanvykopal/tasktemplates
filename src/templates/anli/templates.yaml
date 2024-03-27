@@ -1,4 +1,4 @@
-dataset: anli
+dataset: facebook/anli
 splits:
   train: train_r1
   validation: dev_r1

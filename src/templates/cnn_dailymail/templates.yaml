@@ -1,4 +1,5 @@
 dataset: cnn_dailymail
+subset: '3.0.0'
 splits:
   train: train
   validation: validation

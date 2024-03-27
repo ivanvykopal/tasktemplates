@@ -6,7 +6,7 @@ splits:
 templates:
   T5:
     - name: piqa-prompt-t5
-      input: 'question {{goal}} choice1: {{sol1}} choice2: {{sol2}}'
+      input: 'question: {{goal}} choice1: {{sol1}} choice2: {{sol2}}'
       target: '{{lambda label: str(label)}}'
       metadata:
         languages:

@@ -7,8 +7,8 @@ splits:
 templates:
   T5:
     - name: record-prompt-t5
-      input: 'record query: {{query}} entities: {{entities}} passage: {{passage}}'
-      target: '{{answer}}'
+      input: 'record query: {{query}} entities: {{", ".join(entities)}} passage: {{passage}}'
+      target: '{{answers[0]}}'
       metadata:
         languages:
           - en
