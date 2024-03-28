@@ -10,7 +10,7 @@ class TestCola(unittest.TestCase):
         "label": 1
     }
     EXPECTED = {
-        "input": f"sentence: {EXAMPLE['sentence']}",
+        "input": f"cola sentence: {EXAMPLE['sentence']}",
         "target": f"acceptable"
     }
 

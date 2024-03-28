@@ -12,7 +12,7 @@ class TestMNLI(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"premise: {EXAMPLE['premise']} hypothesis: {EXAMPLE['hypothesis']}",
+        "input": f"mnli premise: {EXAMPLE['premise']} hypothesis: {EXAMPLE['hypothesis']}",
         "target": f"neutral"
     }
 

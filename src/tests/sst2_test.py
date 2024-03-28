@@ -11,7 +11,7 @@ class TestSST2(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"sentence: {EXAMPLE['sentence']}",
+        "input": f"sst2 sentence: {EXAMPLE['sentence']}",
         "target": f"negative"
     }
 

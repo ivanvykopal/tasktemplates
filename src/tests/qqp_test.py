@@ -12,7 +12,7 @@ class TestQQP(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question1: {EXAMPLE['question1']} question2: {EXAMPLE['question2']}",
+        "input": f"qqp question1: {EXAMPLE['question1']} question2: {EXAMPLE['question2']}",
         "target": f"not_duplicate"
     }
 

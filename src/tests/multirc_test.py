@@ -15,7 +15,7 @@ class TestMultiRC(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} answer: {EXAMPLE['answer']} paragraph: {EXAMPLE['paragraph']}",
+        "input": f"multirc question: {EXAMPLE['question']} answer: {EXAMPLE['answer']} paragraph: {EXAMPLE['paragraph']}",
         "target": f"False"
     }
 

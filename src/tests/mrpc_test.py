@@ -12,7 +12,7 @@ class TestMRPC(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
+        "input": f"mrpc sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
         "target": f"equivalent"
     }
 

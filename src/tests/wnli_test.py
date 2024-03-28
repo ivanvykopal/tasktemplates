@@ -12,7 +12,7 @@ class TestWNLI(unittest.TestCase):
         "label": 1
     }
     EXPECTED = {
-        "input": f"sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
+        "input": f"wnli sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
         "target": f"entailment"
     }
 

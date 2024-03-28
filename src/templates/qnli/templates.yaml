@@ -8,7 +8,7 @@ templates:
   T5:
     - name: qnli-prompt-t5
       choices: ['entailment', 'not_entailment']
-      input: 'question: {{question}} sentence: {{sentence}}'
+      input: 'qnli question: {{question}} sentence: {{sentence}}'
       target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
       metadata:
         languages:

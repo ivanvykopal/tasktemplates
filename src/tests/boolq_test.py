@@ -12,7 +12,7 @@ class TestBoolQ(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['question']} passage: {EXAMPLE['passage']}",
+        "input": f"boolq question: {EXAMPLE['question']} passage: {EXAMPLE['passage']}",
         "target": f"True"
     }
 

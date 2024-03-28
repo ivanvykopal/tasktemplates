@@ -12,7 +12,7 @@ class TestCB(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"premise: {EXAMPLE['premise']} hypothesis: {EXAMPLE['hypothesis']}",
+        "input": f"cb premise: {EXAMPLE['premise']} hypothesis: {EXAMPLE['hypothesis']}",
         "target": f"entailment"
     }
 

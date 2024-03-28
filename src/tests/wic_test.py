@@ -14,7 +14,7 @@ class TestWIC(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']} word: {EXAMPLE['word']}",
+        "input": f"wic sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']} word: {EXAMPLE['word']}",
         "target": f"False"
     }
 

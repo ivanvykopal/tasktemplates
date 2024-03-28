@@ -12,7 +12,7 @@ class TestCopa(unittest.TestCase):
         "label": 0
     }
     EXPECTED = {
-        "input": f"premise: {EXAMPLE['premise']} choice1: {EXAMPLE['choice1']} choice2: {EXAMPLE['choice2']}",
+        "input": f"copa premise: {EXAMPLE['premise']} choice1: {EXAMPLE['choice1']} choice2: {EXAMPLE['choice2']}",
         "target": f"choice1"
     }
 

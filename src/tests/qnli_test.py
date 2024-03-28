@@ -13,7 +13,7 @@ class TestPiqa(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"question: {EXAMPLE['goal']} choice1: {EXAMPLE['sol1']} choice2: {EXAMPLE['sol2']}",
+        "input": f"qnli question: {EXAMPLE['goal']} choice1: {EXAMPLE['sol1']} choice2: {EXAMPLE['sol2']}",
         "target": f"{str(EXAMPLE['label'])}"
     }
 

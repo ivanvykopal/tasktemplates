@@ -12,7 +12,7 @@ class TestRTE(unittest.TestCase):
     }
 
     EXPECTED = {
-        "input": f"sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
+        "input": f"rte sentence1: {EXAMPLE['sentence1']} sentence2: {EXAMPLE['sentence2']}",
         "target": f"not_entailment"
     }
 
