@@ -3,24 +3,23 @@ import unittest
 from template import PromptTemplate
 
 
-class TestPiqa(unittest.TestCase):
+class TestQNLI(unittest.TestCase):
 
     EXAMPLE = {
-        "goal": "When boiling butter, when it's ready, you can",
-        "sol1": "Pour it onto a plate",
-        "sol2": "Pour it into a jar",
+        "question": "When did the third Digimon series begin?",
+        "sentence": "Unlike the two seasons before it and most of the seasons that followed, Digimon Tamers takes a darker and more realistic approach to its story featuring Digimon who do not reincarnate after their deaths and more complex character development in the original Japanese.",
         "label": 1
     }
 
     EXPECTED = {
-        "input": f"qnli question: {EXAMPLE['goal']} choice1: {EXAMPLE['sol1']} choice2: {EXAMPLE['sol2']}",
-        "target": f"{str(EXAMPLE['label'])}"
+        "input": f"qnli question: {EXAMPLE['question']} sentence: {EXAMPLE['sentence']}",
+        "target": f"not_entailment"
     }
 
-    def test_piqa_t5(self):
-        template = PromptTemplate("piqa")
+    def test_qnli_t5(self):
+        template = PromptTemplate("qnli")
         prompt_template = template.get_template(
-            "T5", "piqa-prompt-t5")
+            "T5", "qnli-prompt-t5")
 
         output = prompt_template.apply(self.EXAMPLE)
         self.assertEqual(output, self.EXPECTED)
