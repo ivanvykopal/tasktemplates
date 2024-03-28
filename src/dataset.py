@@ -3,8 +3,6 @@ from datasets import load_dataset
 from typing import Union, Dict, List, Any
 import logging
 import functools
-from transformers import AutoTokenizer
-
 
 logging.basicConfig(level=logging.INFO)
 
@@ -38,8 +36,8 @@ class Dataset:
         max_input_length: int,
         max_target_length: int,
         padding: str = "max_length",
-        truncation=True,
-        pad_token=-100
+        truncation: bool = True,
+        pad_token: int = -100
     ):
         input = example["input"]
         target = example["target"]
@@ -59,12 +57,12 @@ class Dataset:
 
     def tokenize_dataset(
         self,
-        tokenizer,
-        max_input_length,
-        max_target_length,
-        padding="max_length",
-        truncation=True,
-        pad_token=-100
+        tokenizer: Any,
+        max_input_length: int,
+        max_target_length: int,
+        padding: str = "max_length",
+        truncation: bool = True,
+        pad_token: int = -100
     ):
         if not self.preprocessed:
             self.preprocess()
@@ -87,7 +85,7 @@ class Dataset:
 
         return train_data, val_data, test_data
 
-    def preprocess(self, batched=True, remove_columns=True):
+    def preprocess(self, batched: bool = True, remove_columns: bool = True):
         # preprocess using self.prompt_template
         list_remove_columns = []
         if remove_columns:

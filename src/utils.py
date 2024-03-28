@@ -296,6 +296,6 @@ def process_template(text, example, choices, preproces_steps):
                     return apply_preprocess_steps(
                         str(result), preproces_steps)
             except Exception as e:
-                return str(e)  # If there's any error, return the error message
+                raise e
 
     return re.sub(match_string, replace, text)

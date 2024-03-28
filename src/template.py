@@ -1,7 +1,7 @@
 import logging
 import os
 import yaml
-import re
+from typing import Dict
 
 from utils import process_template
 from metrics import get_metrics
@@ -16,7 +16,7 @@ class Metadata:
     Metadata for the dataset
     """
 
-    def __init__(self, metadata_dict, template_dict):
+    def __init__(self, metadata_dict: Dict, template_dict: Dict):
         self.languages = metadata_dict["languages"]
         self.metric_names = metadata_dict["metrics"]
         self.metrics = get_metrics(template_dict)
@@ -28,7 +28,7 @@ class Template:
     A template for the dataset
     """
 
-    def __init__(self, name, template_dict):
+    def __init__(self, name: str, template_dict: Dict):
         self.name = name
         self.input = template_dict["input"]
         self.target = template_dict["target"]
@@ -50,7 +50,7 @@ class Template:
                     steps.append(preprocessors[step])
         return steps
 
-    def apply_preprocessors(self, example):
+    def apply_preprocessors(self, example: Dict):
         preprocessors = {
             "wsc_preprocess": WSCPreprocessor().preprocess,
         }
@@ -61,7 +61,7 @@ class Template:
 
         return example
 
-    def apply(self, example):
+    def apply(self, example: Dict):
         """
         Apply the template to the data
         """
@@ -84,7 +84,7 @@ class PromptTemplate:
     A prompt template
     """
 
-    def __init__(self, dataset_name):
+    def __init__(self, dataset_name: str):
         self.dataset_name = dataset_name
         self.temp = self.load_templates_from_file()
         self.templates = self.load_templates()
@@ -104,7 +104,7 @@ class PromptTemplate:
             models[model_name] = templates
         return models
 
-    def get_template(self, model_name, name):
+    def get_template(self, model_name: str, name: str):
         """
         Get a template for the prompt
         """
@@ -122,3 +122,6 @@ class PromptTemplate:
 
     def available_models(self):
         return list(self.temp['templates'].keys())
+
+    def available_templates(self, model_name):
+        return list(self.templates[model_name].keys())
