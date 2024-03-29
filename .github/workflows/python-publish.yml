@@ -35,6 +35,6 @@ jobs:
       run: python -m build
     - name: Publish package
       env:
-        PASSWORD: ${{ secrets.TESTPYPI }}
+        TWINE_PASSWORD: ${{ secrets.TESTPYPI }}
       run: |
         python -m twine upload --repository testpypi dist/*
