@@ -47,6 +47,6 @@ def create_json(hf_token: str):
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('--ht-token', type=str, required=True)
+    argparser.add_argument('--hf-token', type=str, required=True)
     args = argparser.parse_args()
-    create_json()
+    create_json(hf_token=args.hf_token)
