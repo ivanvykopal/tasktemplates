@@ -11,20 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes in src/templates
-        id: check_changes
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "^src/templates/"; then
-            echo "::set-output name=changes::true"
-          else
-            echo "::set-output name=changes::false"
-          fi
-
-      - name: Run Python script if src/templates changed
-        if: steps.check_changes.outputs.changes == 'true'
+      - name: Run Python script
         env:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
         run: |
           python src/publish.py $HUGGINGFACE_TOKEN
-        
-    
