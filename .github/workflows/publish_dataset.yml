@@ -19,4 +19,4 @@ jobs:
         env:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
         run: |
-          python src/publish.py --hf-token $HUGGINGFACE_TOKEN
+          python tasktemplates/publish.py --hf-token $HUGGINGFACE_TOKEN
