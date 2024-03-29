@@ -11,10 +11,10 @@ def create_json(hf_token: str):
     """
     api = HfApi()
     data = []
-    datasets = os.listdir('templates')
+    datasets = os.listdir('src/templates')
     for dataset in datasets:
         print(f"Checking dataset {dataset}")
-        path = f'templates/{dataset}/templates.yaml'
+        path = f'src/templates/{dataset}/templates.yaml'
         with open(path) as file:
             templates = yaml.load(file, Loader=yaml.FullLoader)
             for model, templates in templates['templates'].items():
@@ -30,7 +30,7 @@ def create_json(hf_token: str):
                         'metrics': template['metadata']['metrics']
                     })
 
-    with open('dataset/train.jsonl', 'w') as file:
+    with open('src/dataset/train.jsonl', 'w') as file:
         for line in data:
             file.write(json.dumps(line))
             file.write('\n')
@@ -38,7 +38,7 @@ def create_json(hf_token: str):
     # publish it to the huggingface hub
     api.upload_file(
         token=hf_token,
-        path_or_fileobj='dataset/train.jsonl',
+        path_or_fileobj='src/dataset/train.jsonl',
         path_in_repo='train.jsonl',
         repo_id='ivykopal/tasktemplates',
         repo_type='dataset',
