@@ -16,7 +16,7 @@ requirements = [
 
 setup(
     name='tasktemplates',
-    version='0.0.6',
+    version='0.0.7',
     url='https://github.com/ivanvykopal/tasktemplates.git',
     author='Ivan Vykopal',
     author_email='ivan.vykopal@gmail.com',
