@@ -2,7 +2,10 @@ import argparse
 import os
 import yaml
 import json
+import pkg_resources
 from huggingface_hub import HfApi
+
+TEMPLATES_FOLDER_PATH = pkg_resources.resource_filename(__name__, "templates")
 
 
 def create_json(hf_token: str):
@@ -11,10 +14,10 @@ def create_json(hf_token: str):
     """
     api = HfApi()
     data = []
-    datasets = os.listdir('tasktemplates/templates')
+    datasets = os.listdir(TEMPLATES_FOLDER_PATH)
     for dataset in datasets:
         print(f"Checking dataset {dataset}")
-        path = f'tasktemplates/templates/{dataset}/templates.yaml'
+        path = f'{TEMPLATES_FOLDER_PATH}/{dataset}/templates.yaml'
         with open(path) as file:
             templates = yaml.load(file, Loader=yaml.FullLoader)
             for model, templates in templates['templates'].items():
@@ -30,7 +33,7 @@ def create_json(hf_token: str):
                         'metrics': template['metadata']['metrics']
                     })
 
-    with open('tasktemplates/dataset/train.jsonl', 'w') as file:
+    with open(f'{TEMPLATES_FOLDER_PATH}/../dataset/train.jsonl', 'w') as file:
         for line in data:
             file.write(json.dumps(line))
             file.write('\n')
@@ -38,7 +41,7 @@ def create_json(hf_token: str):
     # publish it to the huggingface hub
     api.upload_file(
         token=hf_token,
-        path_or_fileobj='tasktemplates/dataset/train.jsonl',
+        path_or_fileobj=f'{TEMPLATES_FOLDER_PATH}/../dataset/train.jsonl',
         path_in_repo='train.jsonl',
         repo_id='ivykopal/tasktemplates',
         repo_type='dataset',
