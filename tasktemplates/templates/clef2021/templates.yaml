@@ -1,0 +1,26 @@
+dataset: clef2021
+type: local
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: clef2021-checkworthiness-prompt-mt0
+      choices: ['not_checkworthy', 'checkworthy']
+      input: 'checkworthiness claim: {{tweet_text}}'
+      target: '{{lambda check_worthiness: choices[check_worthiness]}}'
+      metadata:
+        languages:
+          - ar
+          - bg
+          - nl
+          - en
+          - es
+          - tr
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

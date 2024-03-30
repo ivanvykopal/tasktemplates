@@ -9,7 +9,6 @@ templates:
     - name: common_gen-prompt-t5
       input: 'generate: {{lambda concepts: " ".join(concepts)}}'
       target: '{{target}}'
-      task: text-classification
       metadata:
         languages:
           - en

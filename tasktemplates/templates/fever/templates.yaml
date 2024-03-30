@@ -1,0 +1,21 @@
+dataset: fever
+subset: v1.0
+splits:
+  train: train
+  validation: paper_dev
+  test: paper_test
+templates:
+  mT0:
+    - name: fever-factuality-prompt-mt0
+      choices: ['True', 'False', 'Not Enough Info']
+      input: 'factuality claim: {{claim}}'
+      target: '{{lambda label: choices[{"SUPPORTS": 0, "REFUTES": 1, "NOT ENOUGH INFO": 2}[label]]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

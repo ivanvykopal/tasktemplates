@@ -1,0 +1,22 @@
+dataset: demagog
+type: local
+splits:
+  train: train
+  validation: valid
+  test: test
+templates:
+  mT0:
+    - name: demagog-factuality-prompt-mt0
+      choices: ['False', 'True', 'Not Enough Info']
+      input: 'factuality claim: {{claim}}'
+      target: '{{lambda label: choices[0 if label in ["Zavádějící", "Nepravda", "Zavádzajúce"] else (1 if label in ["Pravda"] else 2)]}}'
+      metadata:
+        languages:
+          - cs
+          - sk
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

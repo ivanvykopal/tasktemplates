@@ -1,0 +1,23 @@
+dataset: clef2023
+type: local
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: clef2023-checkworthiness-prompt-mt0
+      choices: ['not_checkworthy', 'checkworthy']
+      input: 'checkworthiness claim: {{Text}}'
+      target: '{{lambda class_label: choices[0 if class_label.lower() == "no" else 1]}}'
+      metadata:
+        languages:
+          - ar
+          - en
+          - es
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

@@ -1,0 +1,20 @@
+dataset: ctu-aic/csfever
+splits:
+  train: train
+  validation: valid
+  test: test
+templates:
+  mT0:
+    - name: csfever-factuality-prompt-mt0
+      choices: ['REFUTES', 'NOT ENOUGH INFO', 'SUPPORTS']
+      input: 'factuality claim: {{claim}} evidence: {{evidence}}'
+      target: '{{lambda label: choices[label]}}'
+      metadata:
+        languages:
+          - cs
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

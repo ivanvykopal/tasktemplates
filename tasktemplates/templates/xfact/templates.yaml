@@ -1,0 +1,34 @@
+dataset: xfact
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: xfact-factuality-prompt-mt0
+      choices: ['False', 'True', 'Not Enough Info']
+      input: 'factuality claim: {{claim}}'
+      target: '{{lambda label: choices[{"false": 0, "partly true/misleading": 0, "mostly false": 0, "true": 1, "mostly true": 1, "half true": 1, "complicated/hard to categorise": 2, "other": 2}[label]]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters
+    - name: xfact-factuality-evidence-prompt-mt0
+      choices: ['False', 'True', 'Not Enough Info']
+      input: 'factuality claim: {{claim}} evidence1: {{evidence_1}} evidence2: {{evidence_2}} evidence3: {{evidence_3}} evidence4: {{evidence_4}} evidence5: {{evidence_5}}'
+      target: '{{lambda label: choices[{"false": 0, "partly true/misleading": 0, "mostly false": 0, "true": 1, "mostly true": 1, "half true": 1, "complicated/hard to categorise": 2, "other": 2}[label]]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters
+          - pad_punctuation
