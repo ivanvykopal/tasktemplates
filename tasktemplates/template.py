@@ -7,6 +7,7 @@ import pkg_resources
 from tasktemplates.utils import process_template
 from tasktemplates.metrics import get_metrics
 from tasktemplates.preprocessors.core import pad_punctuation, remove_markup
+from tasktemplates.preprocessors.record_preprocessor import RecordPreprocessor
 from tasktemplates.preprocessors.wsc_preprocessor import WSCPreprocessor
 
 logging.basicConfig(level=logging.INFO)
@@ -56,11 +57,18 @@ class Template:
     def apply_preprocessors(self, example: Dict):
         preprocessors = {
             "wsc_preprocess": WSCPreprocessor().preprocess,
+            "record_preprocess": RecordPreprocessor().preprocess,
         }
 
         for step in self.metadata.preprocessing:
             if step in preprocessors:
-                example = preprocessors[step](example)
+                if step == "record_preprocess":
+                    batched_example = {
+                        key: [value] for key, value in example.items()
+                    }
+                    example = preprocessors[step](batched_example)
+                else:
+                    example = preprocessors[step](example)
 
         return example
 
@@ -70,6 +78,9 @@ class Template:
         """
         if self.metadata.preprocessing:
             example = self.apply_preprocessors(example)
+
+            if 'record_preprocess' in self.metadata.preprocessing:
+                return example
 
         input_prompt = process_template(
             self.input, example, self.choices, self.get_preprocessing_steps())
