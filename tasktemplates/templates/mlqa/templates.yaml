@@ -1,0 +1,79 @@
+dataset: mlqa
+splits:
+  train: train
+  validation: validation
+  test: validation
+templates:
+  mT0:
+    - name: mlqa-prefix-prompt-mt0
+      input: 'question: {{question}} context: {{context}}'
+      target: '{{lambda answers: answers["text"][0]}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - hi
+          - vi
+          - zh
+        metrics:
+          - squad
+        preprocessing:
+          - pad_punctuation
+    - name: mlqa-instruct1-prompt-mt0
+      input: 'Answer the question depending on the context. Context: {{context}}; Question: {{question}}; Answer:'
+      target: '{{lambda answers: answers["text"][0]}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - hi
+          - vi
+          - zh
+        metrics:
+          - squad
+    - name: mlqa-instruct2-prompt-mt0
+      input: 'What is the answer? Context: {{context}}; Question: {{question}}; Answer:'
+      target: '{{lambda answers: answers["text"][0]}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - hi
+          - vi
+          - zh
+        metrics:
+          - squad
+    - name: mlqa-instruct3-prompt-mt0
+      input: 'Given the following passage "{{context}}", answer the following question. Note that the answer is present within the text. Question: {{question}}'
+      target: '{{lambda answers: answers["text"][0]}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - hi
+          - vi
+          - zh
+        metrics:
+          - squad
+    - name: mlqa-instruct4-prompt-mt0
+      input: 'Refer to the passage below and answer the following question: Passage: {{context}} Question: {{question}}'
+      target: '{{lambda answers: answers["text"][0]}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - hi
+          - vi
+          - zh
+        metrics:
+          - squad

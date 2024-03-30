@@ -1,0 +1,28 @@
+dataset: wikiann
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: wikiann-prompt-mt0
+      input: 'Sentence: {{lambda tokens: " ".join(tokens)}}\nIdentify all named entities in the sentence using PER, LOC, ORG.'
+      target: '{{lambda spans: ", ".join(spans)}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - fr
+          - hi
+          - it
+          - ja
+          - nl
+          - pt
+          - ru
+          - zh
+          - cs
+          - sk
+        metrics:
+          - span_f1

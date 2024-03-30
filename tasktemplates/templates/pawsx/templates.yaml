@@ -1,0 +1,23 @@
+dataset: paws-x
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: paws-x-prompt-mt0
+      choices: ['No', 'Yes']
+      input: 'Sentence1: {{sentence1}}\nSentence2: {{sentence2}}\nQuestion: Do Sentence 1 and Sentence 2 express the same meaning? Yes or No?'
+      target: '{{lambda label: choices[label]}}'
+      metadata:
+        languages:
+          - en
+          - fr
+          - es
+          - de
+          - zh
+          - ja
+          - ko
+        metrics:
+          - accuracy
+          - macro_f1
