@@ -23,7 +23,7 @@ class TemplateCheck:
         """
         Load the templates from the yaml file
         """
-        with open(f"{TEMPLATES_FOLDER_PATH}/{self.dataset_name}/templates.yaml") as file:
+        with open(f"{TEMPLATES_FOLDER_PATH}/{self.dataset_name}/templates.yaml", encoding="utf-8") as file:
             return yaml.load(file, Loader=yaml.FullLoader)
 
     def check_template(self):

@@ -246,7 +246,8 @@ def apply_preprocess_steps(text, preprocess_steps):
 
 
 def process_template(text, example, choices, preproces_steps):
-    match_string = r'\{\{([^{}]+)\}\}'
+    # match_string = r'\{\{([^{}]+)\}\}'
+    match_string = r'\{\{(.*?)\}\}'
 
     def replace(match):
         expression = match.group(1)
@@ -269,7 +270,7 @@ def process_template(text, example, choices, preproces_steps):
         else:
             try:
                 # Check if the expression is a lambda function
-                matched_func = re.match(r'lambda (.*): (.*)', expression)
+                matched_func = re.match(r'lambda (.*?): (.*)', expression)
                 if matched_func:
                     variable = matched_func.group(1)
                     func = matched_func.group(2)

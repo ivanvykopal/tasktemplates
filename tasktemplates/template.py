@@ -6,7 +6,7 @@ import pkg_resources
 
 from tasktemplates.utils import process_template
 from tasktemplates.metrics import get_metrics
-from tasktemplates.preprocessors.core import pad_punctuation, remove_markup
+from tasktemplates.preprocessors.core import pad_punctuation, remove_markup, remove_urls, replace_whitecharacters
 from tasktemplates.preprocessors.record_preprocessor import RecordPreprocessor
 from tasktemplates.preprocessors.wsc_preprocessor import WSCPreprocessor
 
@@ -45,6 +45,8 @@ class Template:
         preprocessors = {
             "pad_punctuation": pad_punctuation,
             "remove_markup": remove_markup,
+            "remove_urls": remove_urls,
+            "replace_whitecharacters": replace_whitecharacters,
         }
 
         steps = []
@@ -130,7 +132,7 @@ class PromptTemplate:
         """
         template_path = os.path.join(
             TEMPLATES_FOLDER_PATH, self.dataset_name, "templates.yaml")
-        with open(template_path, "r") as template_file:
+        with open(template_path, "r", encoding="utf-8") as template_file:
             template = yaml.safe_load(template_file)
         return template
 
