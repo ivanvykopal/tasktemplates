@@ -1,0 +1,35 @@
+dataset: fakecovid
+type: local
+splits:
+  train: train
+  validation: valid
+  test: test
+templates:
+  mT0:
+    - name: fakecovid-factuality-prompt-mt0
+      choices: ['False', 'True', 'Not Enough Info']
+      input: 'factuality claim: {{source_title}}'
+      target: '{{lambda class: choices[class]}}'
+      metadata:
+        languages:
+          - es
+          - en
+          - fr
+          - pt
+          - hi
+          - de
+          - it
+          - zh
+          - ar
+          - nl
+          - ko
+          - pl
+          - ru
+          - ja
+          - sk
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

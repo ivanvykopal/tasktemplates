@@ -1,0 +1,29 @@
+dataset: wikipedia
+type: local
+splits:
+  train: train
+  validation: test
+  test: test
+templates:
+  mT0:
+    - name: wikipedia-prompt-mt0
+      input: ''
+      target: '{{text}}'
+      metadata:
+        languages:
+          - en
+          - ar
+          - de
+          - es
+          - fr
+          - hi
+          - it
+          - ja
+          - nl
+          - pt
+          - ru
+          - zh
+          - cs
+          - sk
+        metrics:
+          - span_f1

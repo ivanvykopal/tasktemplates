@@ -1,0 +1,21 @@
+dataset: lesa2021
+type: local
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: lesa2021-checkworthiness-prompt-mt0
+      choices: ['not_checkworthy', 'checkworthy']
+      input: 'checkworthiness claim: {{en}}'
+      target: '{{lambda claim: choices[int(claim)]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

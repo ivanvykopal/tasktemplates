@@ -23,4 +23,13 @@ def mark_span(text, span_str, span_idx, mark):
     pattern = re.sub('W', span_str, pattern)
     return re.sub(pattern, r'\1{0} \2 {0}'.format(mark), text)
 
-# record_preprocess
+
+def remove_urls(text):
+    """Removes URLs from the text."""
+    return re.sub(r'http\S+', '', text)
+
+
+def replace_whitecharacters(text):
+    """Replaces white characters with a single space."""
+    text = re.sub('\n', ' ', text)
+    return re.sub('\t', ' ', text)

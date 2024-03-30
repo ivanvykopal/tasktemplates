@@ -1,0 +1,22 @@
+dataset: clef2018
+type: local
+splits:
+  train: train
+  validation: valid
+  test: test
+templates:
+  mT0:
+    - name: clef2018-checkworthiness-prompt-mt0
+      choices: ['not_checkworthy', 'checkworthy']
+      input: 'checkworthiness claim: {{text}}'
+      target: '{{lambda label: choices[label]}}'
+      metadata:
+        languages:
+          - ar
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

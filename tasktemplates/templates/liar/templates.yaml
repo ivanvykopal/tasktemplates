@@ -1,0 +1,34 @@
+dataset: liar
+type: local
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: liar-binary-factuality-prompt-mt0
+      choices: ['False', 'True']
+      input: 'factuality claim: {{statement}}'
+      target: '{{lambda label: choices[0 if label in [0, 1, 5] else 1]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters
+    - name: liar-multiclass-factuality-prompt-mt0
+      choices: ['False', 'Half True', 'Mostly True', 'Mostly True', 'True', 'Barely True', 'Pants on Fire']
+      input: 'factuality claim: {{statement}}'
+      target: '{{lambda label: choices[label]}}'
+      metadata:
+        languages:
+          - en
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

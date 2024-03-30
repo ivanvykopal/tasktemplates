@@ -1,0 +1,45 @@
+dataset: afp
+type: local
+splits:
+  train: train
+  validation: valid
+  test: test
+templates:
+  mT0:
+    - name: afp-factuality-prompt-mt0
+      choices: ['False', 'True', 'Not Enough Info']
+      input: 'factuality claim: {{claim}}'
+      target: '{{lambda label: choices[label]}}'
+      metadata:
+        languages:
+          - bg
+          - bn
+          - ca
+          - cs
+          - de
+          - el
+          - en
+          - es
+          - fi
+          - fr
+          - hi
+          - hr
+          - hrv
+          - hu
+          - id
+          - ko
+          - ms
+          - my
+          - nl
+          - pl
+          - pt
+          - ro
+          - sk
+          - sv
+          - th
+        metrics:
+          - accuracy
+          - macro_f1
+        preprocessing:
+          - remove_urls
+          - replace_whitecharacters

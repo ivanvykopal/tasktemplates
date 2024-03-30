@@ -18,7 +18,7 @@ def create_json(hf_token: str):
     for dataset in datasets:
         print(f"Checking dataset {dataset}")
         path = f'{TEMPLATES_FOLDER_PATH}/{dataset}/templates.yaml'
-        with open(path) as file:
+        with open(path, encoding="utf-8") as file:
             templates = yaml.load(file, Loader=yaml.FullLoader)
             for model, templates in templates['templates'].items():
                 for template in templates:
@@ -33,7 +33,7 @@ def create_json(hf_token: str):
                         'metrics': template['metadata']['metrics']
                     })
 
-    with open(f'{TEMPLATES_FOLDER_PATH}/../dataset/train.jsonl', 'w') as file:
+    with open(f'{TEMPLATES_FOLDER_PATH}/../dataset/train.jsonl', 'w', encoding="utf-8") as file:
         for line in data:
             file.write(json.dumps(line))
             file.write('\n')

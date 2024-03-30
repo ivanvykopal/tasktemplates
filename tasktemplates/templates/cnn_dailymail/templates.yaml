@@ -9,7 +9,6 @@ templates:
     - name: cnn_dailymail-prompt-t5
       input: 'summarize: {{article}}'
       target: '{{highlights}}'
-      task: summarization
       metadata:
         languages:
           - en

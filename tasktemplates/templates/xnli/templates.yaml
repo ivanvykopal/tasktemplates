@@ -1,0 +1,31 @@
+dataset: xnli
+splits:
+  train: train
+  validation: validation
+  test: test
+templates:
+  mT0:
+    - name: xnli-prompt-mt0
+      choices: ['True', 'Neither', 'False']
+      input: '{{premise}}\nQuestion: {{hypothesis}} True, False or Neither?'
+      target: '{{lambda label: "<unk>" if label == -1 else choices[label]}}'
+      metadata:
+        languages:
+          - ar
+          - bg
+          - de
+          - el
+          - en
+          - es  
+          - fr
+          - hi
+          - ru
+          - sw
+          - th
+          - tr
+          - ur
+          - vi
+          - zh
+        metrics:
+          - accuracy
+          - macro_f1
